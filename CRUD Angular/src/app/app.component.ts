@@ -11,5 +11,20 @@ export class AppComponent {
   myFunc() {
     return "Angular Journey Starts from here"
   }
-  cls = "start";
+  myclass = "start";
+  myClick(input: String = "Hello") {
+    alert(`${input},  Click Clicked`)
+  }
+  myFuncInput(input: String) {
+    // if (!input) return;
+    console.log(input)
+  }
+  renderVal = "";
+  renderFunc(val: string) {
+    this.renderVal = val;
+  }
+  show = true;
+  toggle() {
+    this.show = !this.show;
+  }
 }

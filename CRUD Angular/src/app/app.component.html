@@ -1,4 +1,30 @@
+<!-- Basic of Angular Interpolation -->
 <div id="hero">
   <h1>Hello {{title}} {{version}}</h1>
-  <h2 class="{{cls}}">{{myFunc()}}</h2>
+  <h2 class="{{myclass}}">{{myFunc()}}</h2>
+  <button (click)="myClick('Hi')">Click</button>
 </div>
+
+<!-- Event in Angular -->
+<input type="text" placeholder="keyup event box" #keyup (keyup)="myFuncInput(keyup.value)">
+<input type="text" placeholder="keydown event box" #keydown (keydown)="myFuncInput(keydown.value)">
+<input type="text" placeholder="input event box" #input (input)="myFuncInput(input.value)">
+<input type="text" placeholder="blur event box" #blur (blur)="myFuncInput(blur.value)">
+<div (mouseover)="myFuncInput('Hovered')" style="border: 1px solid black; height: 10vh;">Hover Here (mouseover)</div>
+<div (mouseleave)="myFuncInput('mouseleave')" style="border: 1px solid black; height: 10vh;">Hover Here(mouseleave)</div>
+
+<!-- Rendering value on UI on Click -->
+<input type="text" placeholder="Type here to render below" #box1 >
+<button (click)="renderFunc(box1.value)">Click</button>
+<p>{{renderVal}}</p>
+
+<!-- Rendering other component on same module (default)-->
+<app-header></app-header>
+
+<!-- if-else condition -->
+<h1 *ngIf="show; then ifBlock else elseCode"></h1>
+<br>
+<button (click)="toggle()">Show/Hide</button>
+<ng-template #ifBlock>Show</ng-template>
+<ng-template #elseCode>Hide</ng-template>
+
