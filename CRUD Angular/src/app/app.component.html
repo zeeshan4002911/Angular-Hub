@@ -2,7 +2,7 @@
 <div id="hero">
   <h1>Hello {{title}} {{version}}</h1>
   <h2 class="{{myclass}}">{{myFunc()}}</h2>
-  <button (click)="myClick('Hi')">Click</button>
+  <button (click)="myClick('Hi')">Click for alert</button>
 </div>
 
 <!-- Event in Angular -->
@@ -27,4 +27,41 @@
 <button (click)="toggle()">Show/Hide</button>
 <ng-template #ifBlock>Show</ng-template>
 <ng-template #elseCode>Hide</ng-template>
+
+<!-- Multiple else-if with data binding -->
+
+<ng-template [ngIf]="color==='red'">
+  <h1 [style.color]="color">{{color}}</h1>
+</ng-template>
+<ng-template [ngIf]="color==='green'">
+  <h1 [style.color]="color">{{color}}</h1>
+</ng-template>
+<ng-template [ngIf]="color==='blue'">
+  <h1 [style.color]="color">{{color}}</h1>
+</ng-template>
+
+<select name="color" id="color">
+  <option value="red" selected #color1 (click) = "colorSwitcher(color1.value)">Red</option>
+  <option value="green" #color2 (click) = "colorSwitcher(color2.value)">Green</option>
+  <option value="blue" #color3 (click) = "colorSwitcher(color3.value)">Blue</option>
+</select>
+
+<!-- Switch Case in Angular with ngStyle -->
+<div [ngSwitch]="color">
+  <h1 *ngSwitchDefault>Unknown</h1>
+  <h1 *ngSwitchCase="'red'" [ngStyle]={color:color}>{{color}}</h1>
+  <h1 *ngSwitchCase="'green'" [ngStyle]={color:color}>{{color}}</h1>
+  <h1 *ngSwitchCase="'blue'" [ngStyle]={color:color}>{{color}}</h1>
+</div>
+
+<!-- For Loop in Angular -->
+<ul>
+  <li *ngFor="let value of colorList">{{value}}</li>
+</ul>
+
+<!-- Angular Form -->
+<form #form1="ngForm" (submit)="getFormData(form1.value)">
+  <input type="text" ngModel name="name" id="name" placeholder="Enter Your Name" />
+  <button>Submit</button>
+</form>
 
