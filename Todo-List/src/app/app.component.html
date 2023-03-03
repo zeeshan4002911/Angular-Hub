@@ -1,12 +1,22 @@
 <div id="App">
   <h1>{{title}}</h1>
   <div>
-    <input type="text" #user_input placeholder="Type here.......">
-    <button (click)="addTask(user_input.value)">ADD</button>
+    <input type="text" #user_input placeholder="Type here......." [value]=input />
+    <div *ngIf="show_save; then saveBlock else addBlock"></div>
+    <ng-template #addBlock>
+      <button (click)="addTask(user_input.value); user_input.value =''">ADD</button>
+    </ng-template>
+    <ng-template #saveBlock>
+      <button (click)="saveTask(user_input.value); user_input.value =''">SAVE</button>
+    </ng-template>
   </div>
-    <ul *ngFor="let task of tasks">
-      <li>
-        {{task.name}}
-      </li>
-    </ul>
+  <ul *ngFor="let task of tasks" id="tasks">
+    <li>
+      <p id="name">{{task.name}}</p>
+      <div>
+        <button (click)="removeTask(task.id)">Del</button>
+        <button (click)="editTask(task.id); show_save=true">Edit</button>
+      </div>
+    </li>
+  </ul>
 </div>
