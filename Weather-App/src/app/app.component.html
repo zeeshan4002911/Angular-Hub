@@ -1,0 +1,22 @@
+<h1>{{ title }}</h1>
+<input type="text" #search autofocus />
+<button (click)="searchFunc(search.value); fetchedWeather = true">
+  Submit
+</button>
+<button (click)="searchFunc('auto:ip'); fetchedWeather = true">
+  Auto Detect
+</button>
+
+<div *ngIf="fetchedData !== '' && !fetchedData?.error; then ifFetched"></div>
+<div *ngIf="fetchedData?.error; then ifError"></div>
+
+<ng-template #ifFetched>
+  <p>{{ fetchedData?.current?.condition?.text }}</p>
+  <img [src]="fetchedData?.current?.condition?.icon" alt="icon" />
+  <p>{{ fetchedData?.location?.name }}, {{ fetchedData?.location?.region }}</p>
+  <p>{{ fetchedData?.location?.country }}</p>
+</ng-template>
+
+<ng-template #ifError>
+  <p>{{ fetchedData?.error?.message }}</p>
+</ng-template>
