@@ -1,0 +1,46 @@
+mat-icon {
+  color: gray;
+  padding: 1rem;
+  float: right;
+  cursor: pointer;
+}
+
+.user {
+  clear: both;
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 50px;
+  img {
+    margin-top: 25px;
+    width: 100px;
+    height: 100px;
+    background-color: cadetblue;
+    border-radius: 50%;
+  }
+}
+
+.menu-head {
+    color: #466be0;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.menu-item {
+    .menu-button {
+        display: flex;
+        width: 100%;
+        position: relative;
+        align-items: center;
+        background-color: #0f1f2a;
+        border: none;
+        cursor: pointer;
+    }
+    span {
+        color: white;
+    }
+    .menu-button:hover, .menu-button:focus{
+        background-color: #2c3344;
+    }
+}
