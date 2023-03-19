@@ -1,22 +1,42 @@
-<h1>{{ title }}</h1>
-<input type="text" #search autofocus />
-<button (click)="searchFunc(search.value); fetchedWeather = true">
-  Submit
-</button>
-<button (click)="searchFunc('auto:ip'); fetchedWeather = true">
-  Auto Detect
-</button>
+<div
+  class="container-fluid my-5 d-flex align-items-center flex-column"
+  style="width: 30vw"
+>
+  <h1 class="row">{{ title }}</h1>
+  <div class="row input-group">
+    <input class="form-control px-2" type="text" #search />
+    <button
+      class="btn btn-outline-secondary"
+      (click)="
+        searchFunc(search.value); search.value = ''; fetchedWeather = true
+      "
+    >
+      Submit
+    </button>
+    <button
+      class="btn btn-outline-secondary"
+      (click)="searchFunc('auto:ip'); fetchedWeather = true"
+    >
+      Auto Detect
+    </button>
+  </div>
+  <div class="bg-dark p-3 text-white mt-5" style="width: 18rem;">
+    <div
+      *ngIf="fetchedData !== '' && !fetchedData?.error; then ifFetched"
+    ></div>
+    <div *ngIf="fetchedData?.error; then ifError"></div>
 
-<div *ngIf="fetchedData !== '' && !fetchedData?.error; then ifFetched"></div>
-<div *ngIf="fetchedData?.error; then ifError"></div>
+    <ng-template #ifFetched>
+      <p>{{ fetchedData?.current?.condition?.text }}</p>
+      <img [src]="fetchedData?.current?.condition?.icon" alt="icon" />
+      <p>
+        {{ fetchedData?.location?.name }}, {{ fetchedData?.location?.region }}
+      </p>
+      <p>{{ fetchedData?.location?.country }}</p>
+    </ng-template>
 
-<ng-template #ifFetched>
-  <p>{{ fetchedData?.current?.condition?.text }}</p>
-  <img [src]="fetchedData?.current?.condition?.icon" alt="icon" />
-  <p>{{ fetchedData?.location?.name }}, {{ fetchedData?.location?.region }}</p>
-  <p>{{ fetchedData?.location?.country }}</p>
-</ng-template>
-
-<ng-template #ifError>
-  <p>{{ fetchedData?.error?.message }}</p>
-</ng-template>
+    <ng-template #ifError>
+      <p>{{ fetchedData?.error?.message }}</p>
+    </ng-template>
+  </div>
+</div>

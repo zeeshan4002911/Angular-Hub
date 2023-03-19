@@ -12,12 +12,10 @@ export class AppComponent {
   fetchedWeather = false;
   async searchFunc(str: string) {
     if (str === '') return;
-    console.log(environment);
     await fetch(
       `http://api.weatherapi.com/v1/current.json?key=${environment.apiKey}&q=${str}`
     )
       .then((response: any) => {
-        console.log(response);
         return response.json();
       })
       .then((data: any) => (this.fetchedData = data));
