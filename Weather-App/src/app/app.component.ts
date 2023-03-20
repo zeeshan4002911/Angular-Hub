@@ -13,7 +13,7 @@ export class AppComponent {
   async searchFunc(str: string) {
     if (str === '') return;
     await fetch(
-      `http://api.weatherapi.com/v1/current.json?key=${environment.apiKey}&q=${str}`
+      `https://api.weatherapi.com/v1/current.json?key=${environment.apiKey}&q=${str}`
     )
       .then((response: any) => {
         return response.json();
