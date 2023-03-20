@@ -1,12 +1,11 @@
-<div
-  class="container-fluid my-5 d-flex align-items-center flex-column"
-  style="width: 30vw"
+<div id="App"
+  class="container-md my-5 d-flex align-items-center flex-column"
 >
-  <h1 class="row">{{ title }}</h1>
-  <div class="row input-group">
-    <input class="form-control px-2" type="text" #search />
+  <h1 class="row mb-3">{{ title }}</h1>
+  <input class="row form-control px-2 mb-3" type="text" #search />
+  <div class="row input-group align-items-center">
     <button
-      class="btn btn-outline-secondary"
+      class="col btn btn-outline-secondary mx-1"
       (click)="
         searchFunc(search.value); search.value = ''; fetchedWeather = true
       "
@@ -14,29 +13,43 @@
       Submit
     </button>
     <button
-      class="btn btn-outline-secondary"
+      class="col btn btn-outline-secondary"
       (click)="searchFunc('auto:ip'); fetchedWeather = true"
     >
-      Auto Detect
+      Auto
     </button>
   </div>
-  <div class="bg-dark p-3 text-white mt-5" style="width: 18rem;">
-    <div
-      *ngIf="fetchedData !== '' && !fetchedData?.error; then ifFetched"
-    ></div>
-    <div *ngIf="fetchedData?.error; then ifError"></div>
 
-    <ng-template #ifFetched>
-      <p>{{ fetchedData?.current?.condition?.text }}</p>
-      <img [src]="fetchedData?.current?.condition?.icon" alt="icon" />
-      <p>
-        {{ fetchedData?.location?.name }}, {{ fetchedData?.location?.region }}
-      </p>
-      <p>{{ fetchedData?.location?.country }}</p>
-    </ng-template>
+  <div class="container-md p-2">
+    <div class="row">
+      <div
+        [class]="
+          fetchedWeather
+            ? 'col d-flex align-items-center flex-column bg-dark p-3 text-white mt-3 rounded'
+            : ''
+        "
+        style="width: 18rem"
+      >
+        <div
+          *ngIf="fetchedData !== '' && !fetchedData?.error; then ifFetched"
+        ></div>
+        <div *ngIf="fetchedData?.error; then ifError"></div>
 
-    <ng-template #ifError>
-      <p>{{ fetchedData?.error?.message }}</p>
-    </ng-template>
+        <ng-template #ifFetched>
+          <p>
+            {{ fetchedData?.location?.name }} &nbsp;
+            {{ fetchedData?.location?.region }} &nbsp;
+            {{ fetchedData?.location?.country }}
+          </p>
+          <img [src]="fetchedData?.current?.condition?.icon" alt="icon" />
+          <p>{{ fetchedData?.current?.condition?.text }}</p>
+          <h1 class="h5">{{ fetchedData?.current?.temp_c }} &deg;c</h1>
+        </ng-template>
+
+        <ng-template #ifError>
+          <p>{{ fetchedData?.error?.message }}</p>
+        </ng-template>
+      </div>
+    </div>
   </div>
 </div>
