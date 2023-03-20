@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6, and then manually converted to version 11.0.0
 
-live:. https://zeeshan4002911.github.io/Angular-Hub/Counter-App
+live:. https://admirable-eclair-ea4709.netlify.app
 
 ## Development server
 
