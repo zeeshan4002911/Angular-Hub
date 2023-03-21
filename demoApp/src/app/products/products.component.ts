@@ -22,5 +22,5 @@ export class ProductsComponent implements OnInit {
 }
 
 
-// structural directive(*): *ngFor -- changes dom structure by adding new element
-// property directive: ngStyle -- changes look and feel of dom
+// structural directive(*): *ngFor, *ngIf -- changes dom structure by adding new element
+// property directive: ngStyle, ngClass -- changes look and feel of dom

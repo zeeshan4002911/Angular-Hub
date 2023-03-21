@@ -1,12 +1,28 @@
 <div *ngFor="let product of products; let i = index">
   <div class="container-md">
-    <div class="row align-items-center my-3" [ngStyle]="{backgroundColor: product.status === 'Unavailable' ? '#ffafaf' : '#aeffae' }">
+    <div
+      class="row align-items-center my-3"
+      [ngStyle]="{
+        backgroundColor:
+          product.status === 'Unavailable' ? '#ffafaf' : '#aeffae'
+      }"
+    >
       <p class="col">{{ product.name }}</p>
-      <p class="col" [ngStyle]="{color: product.status === 'Unavailable' ? 'Red' : 'Green' }">{{ product.status }}</p>
+      <p
+        class="col"
+        [style.color]="product.status === 'Unavailable' ? 'Red' : 'Green'"
+      >
+        {{ product.status }}
+      </p>
       <p class="col">{{ product.price }}</p>
       <div class="col">
         <button class="btn btn-success m-2">Details</button>
-        <button class="btn btn-warning">Buy</button>
+        <button class="btn btn-warning" *ngIf="product.status === 'Available'; else notifyme">
+          Buy
+        </button>
+        <ng-template #notifyme>
+          <button class="btn btn-danger">Notify me</button>
+        </ng-template>
       </div>
     </div>
   </div>
